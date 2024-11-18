@@ -9,15 +9,9 @@ import calculator.utilities.*;
 import java.awt.*;
 
 public class UnaryOpPanel extends JPanel {
-    private Calculator calculator;
-    private DisplayPanel displayPanel;
-    private OperatorHandler operatorHandler; // my ref to op handler
 
     public UnaryOpPanel(Calculator calculator, DisplayPanel displayPanel, JPanel subRegion,
             OperatorHandler operatorHandler) {
-        this.calculator = calculator;
-        this.displayPanel = displayPanel;
-        this.operatorHandler = operatorHandler; // Initialize OperatorHandler
 
         setLayout(new GridLayout(5, 1, 10, 10));
         // String[] unaryOperators = {"√", "1/x", "x²", "n!", "Σ", "|x|"};
