@@ -4,7 +4,6 @@
 package calculator;
 
 import org.junit.jupiter.api.Test;
-import java.awt.event.ActionEvent;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +14,6 @@ import javax.swing.JButton; // my buttons are part of JButtonl
 
 import calculator.panels.*;
 import calculator.utilities.OperatorHandler;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorUITest {
     private static Calculator calculator;
