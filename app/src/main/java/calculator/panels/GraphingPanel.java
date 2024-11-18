@@ -60,23 +60,10 @@ public class GraphingPanel extends JPanel {
 
     }
 
-    private void drawGrid() {
-    }
-
-    private void drawPoint(Graphics2D g2, double x, double y) {
-        double scaleX = (getWidth() - 20) / (2 * Math.PI);
-        double scaleY = (getHeight() - 20) / 2;
-        int pixelX = (int) (scaleX * (x - (-Math.PI)) + 10);
-        int pixelY = (int) ((getHeight() / 2) - (scaleY * y) + 10);
-
-        g2.setColor(Color.BLUE);
-        g2.fillOval(pixelX - 5, pixelY - 5, 10, 10);
-    }
-
     private void plotCurve(Graphics2D g2, Function<Double, Double> function, double xStart, double xEnd, Color color) {
         g2.setColor(color); // color
-        double scaleX = 0.9*((getWidth()) / (xEnd - xStart));
-        double scaleY = 0.9*((getHeight()) / 2);
+        double scaleX = 0.9 * ((getWidth()) / (xEnd - xStart));
+        double scaleY = 0.9 * ((getHeight()) / 2);
         // i need a yStart and yEnd
 
         // startpoint
@@ -101,7 +88,4 @@ public class GraphingPanel extends JPanel {
         }
     }
 
-    
 }
-
-
