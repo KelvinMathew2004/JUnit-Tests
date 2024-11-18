@@ -20,7 +20,6 @@ import java.text.DecimalFormat;
 
 public class OperatorHandler implements ActionListener {
     private boolean clearNext;
-    private boolean numberEntered=false;
     private Calculator c = new Calculator();
     private JTextField t; // text values que le pasamos al display
     // private JPanel gp; //my ref to mygraphpanel
@@ -28,7 +27,6 @@ public class OperatorHandler implements ActionListener {
     public OperatorHandler(JTextField t) {
         this.t = t;// textfield
         this.clearNext = false;
-        this.numberEntered=false;
     }
 
     // adpted version of vanially action performed code
@@ -46,25 +44,21 @@ public class OperatorHandler implements ActionListener {
                     System.out.println(command);
                     writer(c.twoOpCaller(Calculator.twoOperator.add, reader()));
                     clearNext = true;
-                    numberEntered = false;// reset to defaul staate
                     break;
                 case "-": // need to fix thi activation
                     System.out.println(command);
                     writer(c.twoOpCaller(Calculator.twoOperator.subtract, reader()));
                     clearNext = true;
-                    numberEntered = false;
                     break;
                 case "x":
                     System.out.println(command);
                     writer(c.twoOpCaller(Calculator.twoOperator.multiply, reader()));
                     clearNext = true;
-                    numberEntered = false;
                     break;
                 case "/":
                     System.out.println(command);
                     writer(c.twoOpCaller(Calculator.twoOperator.divide, reader()));
                     clearNext = true;
-                    numberEntered = false;
                     break;
 
                 // single operator "calcScience"
@@ -72,27 +66,22 @@ public class OperatorHandler implements ActionListener {
                 case "sqr":
                     System.out.println(command);
                     writer(c.calcScience(Calculator.singleOperator.square, reader()));
-                    numberEntered = false;// reset to defaul staate
                     break;
                 case "sqrt":
                     System.out.println(command);
                     writer(c.calcScience(Calculator.singleOperator.squareRoot, reader()));
-                    numberEntered = false;// reset to defaul staate
                     break;
                 case "oneDivideBy":
                     System.out.println(command);
                     writer(c.calcScience(Calculator.singleOperator.oneDevidedBy, reader()));
-                    numberEntered = false;// reset to defaul staate
                     break;
                 case "abs":
                     System.out.println(command);
                     writer(c.calcScience(Calculator.singleOperator.abs, reader()));
-                    numberEntered = false;// reset to defaul staate
                     break;
                 case "fact":
                     System.out.println(command);
                     writer(c.calcScience(Calculator.singleOperator.fact, reader()));
-                    numberEntered = false;// reset to defaul staate
                     break;
                 case "tmode":
                     System.out.println(command);
@@ -151,12 +140,12 @@ public class OperatorHandler implements ActionListener {
                 case "=":
                     System.out.println(command);
                     writer(c.calculateEqual(reader()));
-                    clearNext=true;
+                    clearNext = true;
                     break;
                 case "C":
                     System.out.println(command);
                     writer(c.reset());
-                    clearNext=true;
+                    clearNext = true;
                     break;
                 case "f(x)":
                     System.out.println(command);
@@ -166,16 +155,15 @@ public class OperatorHandler implements ActionListener {
                 default:
                     try {
                         // handle button press and correctly append operand at the end
-                        int num = Integer.parseInt(command); 
-                        if(clearNext){
+                        int num = Integer.parseInt(command);
+                        if (clearNext) {
                             t.setText("");
-                            clearNext=false;
+                            clearNext = false;
 
                         }
                         t.setCaretPosition(t.getDocument().getLength());
                         t.replaceSelection(String.valueOf(num));
-                        numberEntered = true;
-                        
+
                     } catch (NumberFormatException ex) {
                         // handle exceptions
                     }
@@ -186,24 +174,24 @@ public class OperatorHandler implements ActionListener {
         }
     }
 
-    // my function handle decimal points could use some imprvements if i have time    
+    // my function handle decimal points could use some imprvements if i have time
     private void handleDecimalPoint() {
-        if(clearNext){
+        if (clearNext) {
             t.setText("0.");
-            clearNext=false;
-        }else{
+            clearNext = false;
+        } else {
             String currentText = t.getText();
             if (!currentText.contains(".")) {
                 t.setText(currentText + ".");
-                
+
             }
         }
         // String currentText = t.getText();
         // if (currentText.isEmpty()) {
-        //     writer(0.); // Start with "0."
-        //     t.setText("0");
+        // writer(0.); // Start with "0."
+        // t.setText("0");
         // } else if (!currentText.contains(".")) {
-        //     t.setText(currentText+".");
+        // t.setText(currentText+".");
         // }
 
     }
@@ -218,7 +206,7 @@ public class OperatorHandler implements ActionListener {
 
     }
 
-    //integrated writer with trailing zero remove
+    // integrated writer with trailing zero remove
     // overload writer
     public void writer(String num) {
         t.setText(num);
@@ -234,10 +222,9 @@ public class OperatorHandler implements ActionListener {
         }
     }
 
-
-
     // easter egg
     int taylor = 0;
+
     public void taylorMode() {
         if (taylor < 2) {
             String[] t = { "Taylor...", "Swift...", "Mode..." };
