@@ -11,6 +11,8 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
 import javax.swing.JButton; // my buttons are part of JButtonl
+import javax.swing.JPanel;
+import java.awt.*;
 
 import calculator.panels.*;
 import calculator.utilities.OperatorHandler;
@@ -19,7 +21,9 @@ class CalculatorUITest {
     private static Calculator calculator;
     private static DisplayPanel displayPanel;
     private static NumberKeyPanel numberKeyPanel;
+    private static BinaryOpPanel binaryOpPanel;
     private static OperatorHandler operatorHandler;
+    private static JPanel centerRegionPanel;
 
     @BeforeAll
     public static void setUpClass() {
@@ -28,6 +32,9 @@ class CalculatorUITest {
         operatorHandler = new OperatorHandler(displayPanel.getDisplay()); // Assumes DisplayPanel has a method
                                                                           // getDisplay() returning the JTextField
         numberKeyPanel = new NumberKeyPanel(operatorHandler);
+        centerRegionPanel = new JPanel(new BorderLayout());
+        binaryOpPanel = new BinaryOpPanel(centerRegionPanel, operatorHandler);
+
     }
 
     @BeforeEach
@@ -45,12 +52,29 @@ class CalculatorUITest {
         assertEquals(expectedDisplayText, actualDisplayText, "The display should show '0' after pressing button 0.");
     }
 
+    @DisplayName("Testing 1 + 1 = 2 writes 2 to display")
+    @Test
+    public void write1plus1equal2ToDisplay() {
+        JButton oneButton = findButtonByActionCommand("1");
+        JButton plusButton = findButtonByActionCommand("+");
+        JButton equalButton = findButtonByActionCommand("=");
+
+        oneButton.doClick(); // Simulate button click
+        plusButton.doClick(); // Simulate button click
+        oneButton.doClick(); // Simulate button click
+        equalButton.doClick(); // Simulate button click
+        String expectedDisplayText = "2"; // Expect '0'
+        String actualDisplayText = displayPanel.getDisplay().getText(); // Get text from the display
+        assertEquals(expectedDisplayText, actualDisplayText, "The display should show '0' after pressing button 0.");
+    }
+
     @Test
     void appPanelIsCreated() {
         assertNotNull(numberKeyPanel, "NumberKeyPanel should be initialized");
     }
 
     private JButton findButtonByActionCommand(String command) {
+        // Search the number panel
         for (java.awt.Component comp : numberKeyPanel.getComponents()) {
             if (comp instanceof JButton) {
                 JButton button = (JButton) comp;
@@ -59,6 +83,24 @@ class CalculatorUITest {
                 }
             }
         }
+        // Search the binary operations panel
+        for (java.awt.Component comp : binaryOpPanel.getComponents()) {
+            if (comp instanceof JButton) {
+                JButton button = (JButton) comp;
+                if (button.getActionCommand().equals(command)) {
+                    return button;
+                }
+            }
+        }
+        for (java.awt.Component comp : centerRegionPanel.getComponents()) {
+            if (comp instanceof JButton) {
+                JButton button = (JButton) comp;
+                if (button.getActionCommand().equals(command)) {
+                    return button;
+                }
+            }
+        }
+
         return null; // If no button found with the specified command
     }
 }
