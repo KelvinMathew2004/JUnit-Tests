@@ -13,3 +13,6 @@ bin/*
 
 *.class
 .class
+app/.DS_Store
+
+.DS_Store
