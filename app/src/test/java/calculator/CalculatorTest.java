@@ -3,15 +3,25 @@ package calculator;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
     private static Calculator classUnderTest;
+    private static Double tempResult;
 
     @BeforeAll
     public static void setUp() {
         classUnderTest = new Calculator();
+    }
+
+    @BeforeEach
+    public static void resetValues() {
+        classUnderTest.mode = Calculator.twoOperator.normal;
+        classUnderTest.num1 = 0.0;
+        classUnderTest.num2 = 0.0;
+        tempResult = 0.0;
     }
 
     @DisplayName("Tests the addition function")
@@ -26,7 +36,10 @@ class CalculatorTest {
     @Test
     @DisplayName("Tests the addition function")
     void testSimpleAddition() {
-        assertEquals(7, calc.evaluate("3+4"), 0.0001);
+        classUnderTest.mode = Calculator.twoOperator.add;
+        classUnderTest.num1 = 3.0;
+        classUnderTest.num2 = 4.0;
+        assertEquals(7.0, classUnderTest.twoOpOperations());
     }
 
     @Test
