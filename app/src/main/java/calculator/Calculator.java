@@ -15,7 +15,7 @@ public class Calculator{
 	}
 
 	public enum singleOperator { //custom added operators asin,acos,atan,eul,pi,log,logn,abs,fact
-		square, squareRoot, oneDevidedBy, cos, sin, tan,asin,acos,atan,eul,pi,log,logn,abs,fact
+		square, squareRoot, oneDividedBy, cos, sin, tan,asin,acos,atan,eul,pi,log,logn,abs,fact
 	}
 
 	public Double num1, num2;
@@ -108,18 +108,18 @@ public class Calculator{
 			return Math.sqrt(num);
 		}
 
-		if (newMode == singleOperator.oneDevidedBy) {
+		if (newMode == singleOperator.oneDividedBy) {
 			return 1 / num;
 		}
 
 		if (newMode == singleOperator.cos) {
-			return Math.cos(num);
+			return Math.cos(Math.toRadians(num));
 		}
 		if (newMode == singleOperator.sin) {
-			return Math.sin(num);
+			return Math.sin(Math.toRadians(num));
 		}
 		if (newMode == singleOperator.tan) {
-			return Math.tan(num);
+			return Math.tan(Math.toRadians(num));
 		}
 		//////////////////////////////////////
 		// ADDED CUSTOM OPERATORS
