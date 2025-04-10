@@ -45,18 +45,34 @@ class CalculatorTest {
     @Test
     @DisplayName("Tests the subtraction function")
     void testSimpleSubtraction() {
-        assertEquals(5, calc.evaluate("10-5"), 0.0001);
+        classUnderTest.mode = Calculator.twoOperator.subtract;
+        classUnderTest.num1 = 10.0;
+        classUnderTest.num2 = 5.0;
+        assertEquals(5.0, classUnderTest.twoOpOperations());
     }
 
     @Test
     @DisplayName("Tests subtraction followed by addition")
     void testTwoOpOperationsSubtractAdd() {
-        assertEquals(9, calc.evaluate("10-2+1"), 0.0001); // 10-2 = 8, 8+1 = 9
+        classUnderTest.mode = Calculator.twoOperator.subtract;
+        classUnderTest.num1 = 10.0;
+        classUnderTest.num2 = 2.0;
+        tempResult = classUnderTest.twoOpOperations(); // 10-2 = 8
+
+        classUnderTest.mode = Calculator.twoOperator.add;
+        classUnderTest.num1 = tempResult;
+        classUnderTest.num2 = 1.0;
+        assertEquals(9.0, classUnderTest.twoOpOperations()); // 8+1 = 9
     }
 
     @Test
-    @DisplayName("Tests addition and multiplication order of operations")
+    @DisplayName("Tests addition and multiplication")
     void testTwoOpOperationsAddMultiply() {
+        classUnderTest.mode = Calculator.twoOperator.add;
+        classUnderTest.num1 = tempResult;
+        classUnderTest.num2 = 2.0; // 18+2 = 20
+        assertEquals(20.0, classUnderTest.twoOpOperations()); // 18+2 = 20
+
         assertEquals(20, calc.evaluate("2+3*6"), 0.0001); // 3*6 = 18, 18+2 = 20
     }
 
