@@ -99,4 +99,14 @@ class CalculatorUITest {
         findButtonByActionCommand("=").doClick();
         assertEquals("2", displayPanel.getDisplay().getText());
     }
+
+    @Test
+    @DisplayName("9 / 3 should result in 3")
+    public void testNineDividedByThreeEqualsThree() {
+        findButtonByActionCommand("9").doClick();
+        findButtonByActionCommand("/").doClick();
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("3", displayPanel.getDisplay().getText());
+    }
 }
