@@ -80,5 +80,13 @@ class CalculatorUITest {
         assertEquals("0", displayPanel.getDisplay().getText());
     }
 
-    
+    @Test
+    @DisplayName("8 - 3 should result in 5")
+    public void testEightMinusThreeEqualsFive() {
+        findButtonByActionCommand("8").doClick();
+        findButtonByActionCommand("-").doClick();
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("5", displayPanel.getDisplay().getText());
+    }
 }
