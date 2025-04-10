@@ -121,4 +121,16 @@ class CalculatorUITest {
         findButtonByActionCommand("=").doClick();
         assertEquals("14", displayPanel.getDisplay().getText());
     }
+
+    @Test
+    @DisplayName("7 - 4 + 2 should result in 5")
+    public void testSevenMinusFourPlusTwo() {
+        findButtonByActionCommand("7").doClick();
+        findButtonByActionCommand("-").doClick();
+        findButtonByActionCommand("4").doClick();
+        findButtonByActionCommand("+").doClick();
+        findButtonByActionCommand("2").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("5", displayPanel.getDisplay().getText());
+    }
 }
