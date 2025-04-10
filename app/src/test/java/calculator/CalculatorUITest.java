@@ -40,37 +40,6 @@ class CalculatorUITest {
         displayPanel.getDisplay().setText(""); // Clear the display before each test
     }
 
-    @DisplayName("Testing Button[0] writes zero to display")
-    @Test
-    public void writeZeroToDisplay() {
-        JButton zeroButton = findButtonByActionCommand("0");
-        zeroButton.doClick(); // Simulate button click
-        String expectedDisplayText = "0"; // Expect '0'
-        String actualDisplayText = displayPanel.getDisplay().getText(); // Get text from the display
-        assertEquals(expectedDisplayText, actualDisplayText, "The display should show '0' after pressing button 0.");
-    }
-
-    @DisplayName("Testing 1 + 1 = 2 writes 2 to display")
-    @Test
-    public void write1plus1equal2ToDisplay() {
-        JButton oneButton = findButtonByActionCommand("1");
-        JButton plusButton = findButtonByActionCommand("+");
-        JButton equalButton = findButtonByActionCommand("=");
-
-        oneButton.doClick(); // Simulate button click
-        plusButton.doClick(); // Simulate button click
-        oneButton.doClick(); // Simulate button click
-        equalButton.doClick(); // Simulate button click
-        String expectedDisplayText = "2"; // Expect '0'
-        String actualDisplayText = displayPanel.getDisplay().getText(); // Get text from the display
-        assertEquals(expectedDisplayText, actualDisplayText, "The display should show '0' after pressing button 0.");
-    }
-
-    @Test
-    void appPanelIsCreated() {
-        assertNotNull(numberKeyPanel, "NumberKeyPanel should be initialized");
-    }
-
     private JButton findButtonByActionCommand(String command) {
         // Search the number panel
         for (java.awt.Component comp : numberKeyPanel.getComponents()) {
@@ -100,5 +69,78 @@ class CalculatorUITest {
         }
 
         return null; // If no button found with the specified command
+    }
+
+    @Test
+    @DisplayName("Button [0] should write '0' to display")
+    public void testWriteZeroToDisplay() {
+        findButtonByActionCommand("0").doClick();
+        assertEquals("0", displayPanel.getDisplay().getText());
+    }
+
+    @Test
+    @DisplayName("8 - 3 should result in 5")
+    public void testEightMinusThreeEqualsFive() {
+        findButtonByActionCommand("8").doClick();
+        findButtonByActionCommand("-").doClick();
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("5", displayPanel.getDisplay().getText());
+    }
+
+    @Test
+    @DisplayName("1 + 1 should result in 2")
+    public void testOnePlusOneEqualsTwo() {
+        findButtonByActionCommand("1").doClick();
+        findButtonByActionCommand("+").doClick();
+        findButtonByActionCommand("1").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("2", displayPanel.getDisplay().getText());
+    }
+
+    @Test
+    @DisplayName("9 / 3 should result in 3")
+    public void testNineDividedByThreeEqualsThree() {
+        findButtonByActionCommand("9").doClick();
+        findButtonByActionCommand("/").doClick();
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("3", displayPanel.getDisplay().getText());
+    }
+
+    @Test
+    @DisplayName("3 x 4 + 2 should result in 14")
+    public void testTwoPlusThreeTimesFour() {
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("x").doClick();
+        findButtonByActionCommand("4").doClick();
+        findButtonByActionCommand("+").doClick();
+        findButtonByActionCommand("2").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("14", displayPanel.getDisplay().getText());
+    }
+
+    @Test
+    @DisplayName("7 - 4 + 2 should result in 5")
+    public void testSevenMinusFourPlusTwo() {
+        findButtonByActionCommand("7").doClick();
+        findButtonByActionCommand("-").doClick();
+        findButtonByActionCommand("4").doClick();
+        findButtonByActionCommand("+").doClick();
+        findButtonByActionCommand("2").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("5", displayPanel.getDisplay().getText());
+    }
+
+    @Test
+    @DisplayName("6 / 2 x 3 should result in 9")
+    public void testSixDividedByTwoTimesThree() {
+        findButtonByActionCommand("6").doClick();
+        findButtonByActionCommand("/").doClick();
+        findButtonByActionCommand("2").doClick();
+        findButtonByActionCommand("x").doClick();
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("9", displayPanel.getDisplay().getText());
     }
 }
