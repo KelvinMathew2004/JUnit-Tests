@@ -73,7 +73,7 @@ public class OperatorHandler implements ActionListener {
                     break;
                 case "oneDivideBy":
                     System.out.println(command);
-                    writer(c.calcScience(Calculator.singleOperator.oneDevidedBy, reader()));
+                    writer(c.calcScience(Calculator.singleOperator.oneDividedBy, reader()));
                     break;
                 case "abs":
                     System.out.println(command);

@@ -103,10 +103,6 @@ class CalculatorTest {
         assertEquals(1.2, classUnderTest.twoOpOperations()); // 6/5 = 1.2
     }
 
-    // public enum singleOperator { //custom added operators asin,acos,atan,eul,pi,log,logn,abs,fact
-	// 	square, squareRoot, oneDevidedBy, cos, sin, tan,asin,acos,atan,eul,pi,log,logn,abs,fact
-	// }
-
     @Test
     @DisplayName("Tests the square function")
     void testSquare() {
@@ -122,25 +118,25 @@ class CalculatorTest {
     @Test
     @DisplayName("Tests the 1/x function")
     void testOneDividedBy() {
-        assertEquals(0.2, classUnderTest.calcScience(Calculator.singleOperator.oneDevidedBy, 5.0)); // 1/5 = 0.2
+        assertEquals(0.2, classUnderTest.calcScience(Calculator.singleOperator.oneDividedBy, 5.0)); // 1/5 = 0.2
     }
 
     @Test
     @DisplayName("Tests the cosine function in degrees")
     void testCos() {
-        assertEquals(-1.0, classUnderTest.calcScience(Calculator.singleOperator.cos, 180.0)); // cos(180) = -1
+        assertEquals(-1.0, classUnderTest.calcScience(Calculator.singleOperator.cos, 180.0), 0.0001); // cos(180) = -1
     }
 
     @Test
     @DisplayName("Tests the sine function in degrees")
     void testSin() {
-        assertEquals(0.0, classUnderTest.calcScience(Calculator.singleOperator.sin, 180.0)); // sin(180) = 0
+        assertEquals(0.0, classUnderTest.calcScience(Calculator.singleOperator.sin, 180.0), 0.0001); // sin(180) = 0 with tolerance
     }
 
     @Test
     @DisplayName("Tests the tan function in degrees")
     void testTan() {
-        assertEquals(1.0, classUnderTest.calcScience(Calculator.singleOperator.tan, 45.0)); // tan(45) = 1
+        assertEquals(1.0, classUnderTest.calcScience(Calculator.singleOperator.tan, 45.0), 0.0001); // tan(45) = 1
     }
 
     @Test

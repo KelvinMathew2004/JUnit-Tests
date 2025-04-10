@@ -18,7 +18,6 @@ import calculator.panels.*;
 import calculator.utilities.OperatorHandler;
 
 class CalculatorUITest {
-    private static Calculator calculator;
     private static DisplayPanel displayPanel;
     private static NumberKeyPanel numberKeyPanel;
     private static BinaryOpPanel binaryOpPanel;
@@ -27,7 +26,6 @@ class CalculatorUITest {
 
     @BeforeAll
     public static void setUpClass() {
-        calculator = new Calculator();
         displayPanel = new DisplayPanel();
         operatorHandler = new OperatorHandler(displayPanel.getDisplay()); // Assumes DisplayPanel has a method
                                                                           // getDisplay() returning the JTextField
