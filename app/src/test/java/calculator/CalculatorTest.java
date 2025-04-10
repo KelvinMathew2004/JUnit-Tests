@@ -17,7 +17,7 @@ class CalculatorTest {
     }
 
     @BeforeEach
-    public static void resetValues() {
+    public void resetValues() {
         classUnderTest.mode = Calculator.twoOperator.normal;
         classUnderTest.num1 = 0.0;
         classUnderTest.num2 = 0.0;
@@ -53,7 +53,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("Tests subtraction followed by addition")
-    void testTwoOpOperationsSubtractAdd() {
+    void testThreeOpOperationsSubtractAdd() {
         classUnderTest.mode = Calculator.twoOperator.subtract;
         classUnderTest.num1 = 10.0;
         classUnderTest.num2 = 2.0;
@@ -66,8 +66,17 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Tests addition and multiplication")
-    void testTwoOpOperationsAddMultiply() {
+    @DisplayName("Tests the division function")
+    void testTwoOpOperationsDivide() {
+        classUnderTest.mode = Calculator.twoOperator.divide;
+        classUnderTest.num1 = 20.0;
+        classUnderTest.num2 = 5.0;
+        assertEquals(4.0, classUnderTest.twoOpOperations()); // 20/5 = 4
+    }
+
+    @Test
+    @DisplayName("Tests addition followed by multiplication")
+    void testThreeOpOperationsAddMultiply() {
         classUnderTest.mode = Calculator.twoOperator.multiply;
         classUnderTest.num1 = 3.0;
         classUnderTest.num2 = 6.0;
@@ -80,20 +89,11 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Tests the division function")
-    void testTwoOpOperationsDivide() {
-        classUnderTest.mode = Calculator.twoOperator.divide;
-        classUnderTest.num1 = 20.0;
-        classUnderTest.num2 = 5.0;
-        assertEquals(4.0, classUnderTest.twoOpOperations()); // 20/5 = 4
-    }
-
-    @Test
     @DisplayName("Tests multiplication followed by division")
-    void testTwoOpOperationsMultiplyDivide() {
+    void testThreeOpOperationsMultiplyDivide() {
         classUnderTest.mode = Calculator.twoOperator.multiply;
         classUnderTest.num1 = 3.0;
-        classUnderTest.num2 = 6.0;
+        classUnderTest.num2 = 2.0;
         tempResult = classUnderTest.twoOpOperations(); // 3*2 = 6
 
         classUnderTest.mode = Calculator.twoOperator.divide;
