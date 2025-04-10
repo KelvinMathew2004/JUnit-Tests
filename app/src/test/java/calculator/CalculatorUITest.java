@@ -143,4 +143,10 @@ class CalculatorUITest {
         findButtonByActionCommand("=").doClick();
         assertEquals("9", displayPanel.getDisplay().getText());
     }
+
+    @Test
+    @DisplayName("UI panels should be initialized")
+    public void testAppPanelIsCreated() {
+        assertNotNull(numberKeyPanel);
+    }
 }
