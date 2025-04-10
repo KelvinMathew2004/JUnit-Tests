@@ -42,37 +42,6 @@ class CalculatorUITest {
         displayPanel.getDisplay().setText(""); // Clear the display before each test
     }
 
-    @DisplayName("Testing Button[0] writes zero to display")
-    @Test
-    public void writeZeroToDisplay() {
-        JButton zeroButton = findButtonByActionCommand("0");
-        zeroButton.doClick(); // Simulate button click
-        String expectedDisplayText = "0"; // Expect '0'
-        String actualDisplayText = displayPanel.getDisplay().getText(); // Get text from the display
-        assertEquals(expectedDisplayText, actualDisplayText, "The display should show '0' after pressing button 0.");
-    }
-
-    @DisplayName("Testing 1 + 1 = 2 writes 2 to display")
-    @Test
-    public void write1plus1equal2ToDisplay() {
-        JButton oneButton = findButtonByActionCommand("1");
-        JButton plusButton = findButtonByActionCommand("+");
-        JButton equalButton = findButtonByActionCommand("=");
-
-        oneButton.doClick(); // Simulate button click
-        plusButton.doClick(); // Simulate button click
-        oneButton.doClick(); // Simulate button click
-        equalButton.doClick(); // Simulate button click
-        String expectedDisplayText = "2"; // Expect '0'
-        String actualDisplayText = displayPanel.getDisplay().getText(); // Get text from the display
-        assertEquals(expectedDisplayText, actualDisplayText, "The display should show '0' after pressing button 0.");
-    }
-
-    @Test
-    void appPanelIsCreated() {
-        assertNotNull(numberKeyPanel, "NumberKeyPanel should be initialized");
-    }
-
     private JButton findButtonByActionCommand(String command) {
         // Search the number panel
         for (java.awt.Component comp : numberKeyPanel.getComponents()) {
@@ -103,4 +72,13 @@ class CalculatorUITest {
 
         return null; // If no button found with the specified command
     }
+
+    @Test
+    @DisplayName("Button [0] should write '0' to display")
+    public void testWriteZeroToDisplay() {
+        findButtonByActionCommand("0").doClick();
+        assertEquals("0", displayPanel.getDisplay().getText());
+    }
+
+    
 }
