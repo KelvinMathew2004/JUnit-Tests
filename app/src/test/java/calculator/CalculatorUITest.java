@@ -133,4 +133,16 @@ class CalculatorUITest {
         findButtonByActionCommand("=").doClick();
         assertEquals("5", displayPanel.getDisplay().getText());
     }
+
+    @Test
+    @DisplayName("6 / 2 x 3 should result in 9")
+    public void testSixDividedByTwoTimesThree() {
+        findButtonByActionCommand("6").doClick();
+        findButtonByActionCommand("/").doClick();
+        findButtonByActionCommand("2").doClick();
+        findButtonByActionCommand("x").doClick();
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("9", displayPanel.getDisplay().getText());
+    }
 }
