@@ -1,11 +1,12 @@
 package calculator;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
     private static Calculator classUnderTest;
@@ -100,6 +101,54 @@ class CalculatorTest {
         classUnderTest.num1 = tempResult;
         classUnderTest.num2 = 5.0;
         assertEquals(1.2, classUnderTest.twoOpOperations()); // 6/5 = 1.2
+    }
+
+    // public enum singleOperator { //custom added operators asin,acos,atan,eul,pi,log,logn,abs,fact
+	// 	square, squareRoot, oneDevidedBy, cos, sin, tan,asin,acos,atan,eul,pi,log,logn,abs,fact
+	// }
+
+    @Test
+    @DisplayName("Tests the square function")
+    void testSquare() {
+        assertEquals(16.0, classUnderTest.calcScience(Calculator.singleOperator.square, 4.0)); // 4^2 = 16
+    }
+
+    @Test
+    @DisplayName("Tests the square root function")
+    void testSquareRoot() {
+        assertEquals(7.0, classUnderTest.calcScience(Calculator.singleOperator.squareRoot, 49.0)); // 49^0.5 = 7
+    }
+
+    @Test
+    @DisplayName("Tests the 1/x function")
+    void testOneDividedBy() {
+        assertEquals(0.2, classUnderTest.calcScience(Calculator.singleOperator.oneDevidedBy, 5.0)); // 1/5 = 0.2
+    }
+
+    @Test
+    @DisplayName("Tests the cosine function in degrees")
+    void testCos() {
+        assertEquals(-1.0, classUnderTest.calcScience(Calculator.singleOperator.cos, 180.0)); // cos(180) = -1
+    }
+
+    @Test
+    @DisplayName("Tests the sine function in degrees")
+    void testSin() {
+        assertEquals(0.0, classUnderTest.calcScience(Calculator.singleOperator.sin, 180.0)); // sin(180) = 0
+    }
+
+    @Test
+    @DisplayName("Tests the tan function in degrees")
+    void testTan() {
+        assertEquals(1.0, classUnderTest.calcScience(Calculator.singleOperator.tan, 45.0)); // tan(45) = 1
+    }
+
+    @Test
+    @DisplayName("Tests whether an error is thrown if a null mode is passed")
+    void testThrowError() {
+        assertThrows(Error.class, () -> {
+            classUnderTest.calcScience(null, 45.0);
+        }); // null = error
     }
 
 }
