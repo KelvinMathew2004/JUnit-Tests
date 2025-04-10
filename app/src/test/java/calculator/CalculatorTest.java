@@ -35,7 +35,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("Tests the addition function")
-    void testSimpleAddition() {
+    void testTwoOpOperationsAdd2() {
         classUnderTest.mode = Calculator.twoOperator.add;
         classUnderTest.num1 = 3.0;
         classUnderTest.num2 = 4.0;
@@ -44,7 +44,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("Tests the subtraction function")
-    void testSimpleSubtraction() {
+    void testTwoOpOperationsSubtract() {
         classUnderTest.mode = Calculator.twoOperator.subtract;
         classUnderTest.num1 = 10.0;
         classUnderTest.num2 = 5.0;
@@ -68,24 +68,38 @@ class CalculatorTest {
     @Test
     @DisplayName("Tests addition and multiplication")
     void testTwoOpOperationsAddMultiply() {
+        classUnderTest.mode = Calculator.twoOperator.multiply;
+        classUnderTest.num1 = 3.0;
+        classUnderTest.num2 = 6.0;
+        tempResult = classUnderTest.twoOpOperations(); // 3*6 = 18
+
         classUnderTest.mode = Calculator.twoOperator.add;
         classUnderTest.num1 = tempResult;
-        classUnderTest.num2 = 2.0; // 18+2 = 20
+        classUnderTest.num2 = 2.0;
         assertEquals(20.0, classUnderTest.twoOpOperations()); // 18+2 = 20
-
-        assertEquals(20, calc.evaluate("2+3*6"), 0.0001); // 3*6 = 18, 18+2 = 20
     }
 
     @Test
     @DisplayName("Tests the division function")
-    void testSimpleDivision() {
-        assertEquals(4, calc.evaluate("20/5"), 0.0001);
+    void testTwoOpOperationsDivide() {
+        classUnderTest.mode = Calculator.twoOperator.divide;
+        classUnderTest.num1 = 20.0;
+        classUnderTest.num2 = 5.0;
+        assertEquals(4.0, classUnderTest.twoOpOperations()); // 20/5 = 4
     }
 
     @Test
     @DisplayName("Tests multiplication followed by division")
     void testTwoOpOperationsMultiplyDivide() {
-        assertEquals(1.2, calc.evaluate("3*2/5"), 0.0001); // 3*2 = 6, 6/5 = 1.2
+        classUnderTest.mode = Calculator.twoOperator.multiply;
+        classUnderTest.num1 = 3.0;
+        classUnderTest.num2 = 6.0;
+        tempResult = classUnderTest.twoOpOperations(); // 3*2 = 6
+
+        classUnderTest.mode = Calculator.twoOperator.divide;
+        classUnderTest.num1 = tempResult;
+        classUnderTest.num2 = 5.0;
+        assertEquals(1.2, classUnderTest.twoOpOperations()); // 6/5 = 1.2
     }
 
 }
