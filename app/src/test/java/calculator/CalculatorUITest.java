@@ -109,4 +109,16 @@ class CalculatorUITest {
         findButtonByActionCommand("=").doClick();
         assertEquals("3", displayPanel.getDisplay().getText());
     }
+
+    @Test
+    @DisplayName("3 x 4 + 2 should result in 14")
+    public void testTwoPlusThreeTimesFour() {
+        findButtonByActionCommand("3").doClick();
+        findButtonByActionCommand("x").doClick();
+        findButtonByActionCommand("4").doClick();
+        findButtonByActionCommand("+").doClick();
+        findButtonByActionCommand("2").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("14", displayPanel.getDisplay().getText());
+    }
 }
