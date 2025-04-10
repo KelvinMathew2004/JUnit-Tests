@@ -89,4 +89,14 @@ class CalculatorUITest {
         findButtonByActionCommand("=").doClick();
         assertEquals("5", displayPanel.getDisplay().getText());
     }
+
+    @Test
+    @DisplayName("1 + 1 should result in 2")
+    public void testOnePlusOneEqualsTwo() {
+        findButtonByActionCommand("1").doClick();
+        findButtonByActionCommand("+").doClick();
+        findButtonByActionCommand("1").doClick();
+        findButtonByActionCommand("=").doClick();
+        assertEquals("2", displayPanel.getDisplay().getText());
+    }
 }
